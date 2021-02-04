@@ -57,7 +57,6 @@ class ReviewInstance extends React.Component {
   }
 
   render() {
-
     let { eachReview } = this.props;
     let stars;
     if (eachReview.stars === 5) {

@@ -7,53 +7,20 @@ mongoose.connect('mongodb://localhost/champion_reviews', { useNewUrlParser: true
   });
 
 const reviewSchema = new mongoose.Schema({
-  productId: {
-    type: Number,
-  },
+  productId: { type: Number },
   title: String,
-  description: {
-    type: String,
-    required: true,
-  },
-  stars: {
-    type: Number,
-    required: true,
-  },
-  quality: {
-    type: String,
-  },
-  comfortLevel: {
-    type: String,
-  },
-  fit: {
-    type: String,
-  },
-  recommend: {
-    type: String,
-  },
-  createdAt: {
-    type: Number,
-  },
-  user: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  yes: {
-    type: Number,
-    default: 0,
-  },
-  no: {
-    type: Number,
-    default: 0,
-  },
-  report: {
-    type: String,
-    default: 'Report',
-  },
+  description: { type: String, required: true },
+  stars: { type: Number, required: true },
+  quality: { type: String },
+  comfortLevel: { type: String },
+  fit: { type: String },
+  recommend: { type: String },
+  createdAt: { type: Number },
+  user: { type: String, required: true },
+  email: { type: String, required: true },
+  yes: { type: Number, default: 0 },
+  no: { type: Number, default: 0 },
+  report: { type: String, default: 'Report' },
 });
 
 const Review = mongoose.model('Review', reviewSchema);
@@ -71,7 +38,7 @@ const questionSchema = new mongoose.Schema({
     email: String,
     yes: {
       type: Number,
-      default: 0
+      default: 0,
     },
     no: {
       type: Number,
@@ -80,9 +47,9 @@ const questionSchema = new mongoose.Schema({
     report: {
       type: String,
       default: 'Report',
-    }
+    },
   }],
-  responseCount: Number
+  responseCount: Number,
 });
 
 const Question = mongoose.model('Question', questionSchema);
