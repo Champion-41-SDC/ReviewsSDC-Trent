@@ -16,7 +16,7 @@ class RatingDistribution extends React.Component {
   }
 
   getReviews() {
-    axios.get('/api/bechampions/products/1/reviews/')
+    axios.get('/api/bechampions/products/reviews/')
       .then((response) => {
         this.setState({
           reviews: response.data
@@ -36,13 +36,13 @@ class RatingDistribution extends React.Component {
     let oneStarCount = 0;
     for (var i = 0; i < reviews.length; i++) {
       let eachReview = reviews[i];
-      if (eachReview.stars === 5) {
+      if (eachReview.stars === '4') {
         fiveStarCount += 1;
-      } else if (eachReview.stars === 4) {
+      } else if (eachReview.stars === '3') {
         fourStarCount += 1;
-      } else if (eachReview.stars === 3) {
+      } else if (eachReview.stars === '2') {
         threeStarCount += 1;
-      } else if (eachReview.stars === 2) {
+      } else if (eachReview.stars === '1') {
         twoStarCount += 1;
       } else {
         oneStarCount += 1;

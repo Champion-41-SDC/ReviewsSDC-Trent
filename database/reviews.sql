@@ -1,9 +1,11 @@
+DROP TABLE IF EXISTS reviews;
+
 CREATE TABLE reviews (
-  id bigint not null,
+  id bigserial not null,
   product_id numeric,
   title varchar(100) not null,
   _description varchar(500) not null,
-  stars bigint not null,
+  stars numeric not null,
   comfort_level varchar(21) not null,
   fit varchar(30) not null,
   quality varchar(30) not null,
@@ -16,7 +18,7 @@ CREATE TABLE reviews (
   report varchar(6) DEFAULT 'Report'
 );
 
-COPY reviews( id,product_id,
+COPY reviews( product_id,
   title,
   _description,
   stars,
@@ -30,6 +32,6 @@ COPY reviews( id,product_id,
   _yes,
   _no,
   report)
-FROM '/Users/trentito/Desktop/WORK/reviews/reviews.csv'
+FROM '/Users/trentito/Desktop/WORK/SDC/reviews/reviews.csv'
 DELIMITER ','
 CSV HEADER;

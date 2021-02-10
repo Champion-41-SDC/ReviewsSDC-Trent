@@ -33,7 +33,7 @@ class ReviewsAllContent extends React.Component {
   }
 
   getReviews() {
-    axios.get('/api/bechampions/products/1/reviews/')
+    axios.get('/api/bechampions/products/reviews/')
       .then((response) => {
         this.setState({
           reviews: response.data
@@ -45,7 +45,7 @@ class ReviewsAllContent extends React.Component {
   }
 
   getReviewsMostHelpful() {
-    axios.get('/api/bechampions/products/1/reviews/sortMostHelpful')
+    axios.get('/api/bechampions/products/reviews/sortMostHelpful')
       .then((response) => {
         this.setState({
           reviews: response.data
@@ -57,7 +57,7 @@ class ReviewsAllContent extends React.Component {
   }
 
   getReviewsHighestRatings() {
-    axios.get('/api/bechampions/products/1/reviews/sortHighestRatings')
+    axios.get('/api/bechampions/products/reviews/sortHighestRatings')
       .then((response) => {
         this.setState({
           reviews: response.data
@@ -69,7 +69,7 @@ class ReviewsAllContent extends React.Component {
   }
 
   sortMostRelevant() {
-    axios.get('/api/bechampions/products/1/reviews/sortMostRelevant')
+    axios.get('/api/bechampions/products/reviews/sortMostRelevant')
     .then((response) => {
       this.setState({
         reviews: response.data
@@ -84,18 +84,14 @@ class ReviewsAllContent extends React.Component {
     this.setState((state) => ({
       start: state.start + 6,
       end: state.end + 6
-    }), () => {
-      console.log(this.state)
-    })
+    }));
   }
 
   previousPage() {
     this.setState((state) => ({
       start: state.start - 6,
       end: state.end - 6
-    }), () => {
-      console.log(this.state)
-    })
+    }));
   }
 
   render () {

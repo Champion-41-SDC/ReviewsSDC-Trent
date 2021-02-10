@@ -25,7 +25,7 @@ class ReviewInstance extends React.Component {
 
   voteYes() {
     let { eachReview } = this.props;
-    axios.put(`/api/bechampions/products/${eachReview.productId}/reviews/${eachReview._id}/yes`)
+    axios.put(`/api/reviews/${eachReview.id}/yes`)
       .then(() => {
         this.props.getReviews();
       })
@@ -36,7 +36,7 @@ class ReviewInstance extends React.Component {
 
   voteNo() {
     let { eachReview } = this.props;
-    axios.put(`/api/bechampions/products/${eachReview.productId}/reviews/${eachReview._id}/no`)
+    axios.put(`/api/reviews/${eachReview.id}/no`)
       .then(() => {
         this.props.getReviews();
       })
@@ -47,7 +47,7 @@ class ReviewInstance extends React.Component {
 
   reportReview() {
     let { eachReview } = this.props;
-    axios.put(`/api/bechampions/products/${eachReview.productId}/reviews/${eachReview._id}/reported`)
+    axios.put(`/api/reviews/${eachReview.id}/reported`)
       .then(() => {
         this.props.getReviews();
       })
@@ -59,52 +59,52 @@ class ReviewInstance extends React.Component {
   render() {
     let { eachReview } = this.props;
     let stars;
-    if (eachReview.stars === 5) {
+    if (eachReview.stars === '5') {
       stars = <FiveStar />;
-    } else if (eachReview.stars === 4) {
+    } else if (eachReview.stars === '4') {
       stars = <FourStar />;
-    } else if (eachReview.stars === 3) {
+    } else if (eachReview.stars === '3') {
       stars = <ThreeStar />;
-    } else if (eachReview.stars === 2) {
+    } else if (eachReview.stars === '2') {
       stars = <TwoStar />;
     } else {
       stars = <OneStar />;
     }
 
     let positionDotQuality;
-    if (eachReview.quality === 'Poor') {
+    if (eachReview.quality === '0') {
       positionDotQuality = dotPositionOne
-    } else if (eachReview.quality === 'Fair') {
+    } else if (eachReview.quality === '1') {
       positionDotQuality = dotPositionTwo;
-    } else if (eachReview.quality === 'Average') {
+    } else if (eachReview.quality === '2') {
       positionDotQuality = dotPositionThree;
-    } else if (eachReview.quality === 'Good') {
+    } else if (eachReview.quality === '3') {
       positionDotQuality = dotPositionFour;
     } else {
       positionDotQuality = dotPositionFive;
     }
 
     let positionDotComfortLevel;
-    if (eachReview.comfortLevel === 'Uncomfortable') {
+    if (eachReview.comfort_level === '0') {
       positionDotComfortLevel = dotPositionOne;
-    } else if (eachReview.comfortLevel === 'Not Very Comfortable') {
+    } else if (eachReview.comfort_level === '1') {
       positionDotComfortLevel = dotPositionTwo;
-    } else if (eachReview.comfortLevel === 'Comfortable') {
+    } else if (eachReview.comfort_level === '2') {
       positionDotComfortLevel = dotPositionThree;
-    } else if (eachReview.comfortLevel === 'Very Comfortable') {
+    } else if (eachReview.comfort_level === '3') {
       positionDotComfortLevel = dotPositionFour;
     } else {
       positionDotComfortLevel = dotPositionFive;
     }
 
     let positionDotFit;
-    if (eachReview.fit === 'Small') {
+    if (eachReview.fit === '0') {
       positionDotFit = dotPositionOne;
-    } else if (eachReview.fit === 'A Little Small') {
+    } else if (eachReview.fit === '1') {
       positionDotFit = dotPositionTwo;
-    } else if (eachReview.fit === 'Fits Good') {
+    } else if (eachReview.fit === '2') {
       positionDotFit = dotPositionThree
-    } else if (eachReview.fit === 'A Little Big') {
+    } else if (eachReview.fit === '3') {
       positionDotFit = dotPositionFour;
     } else {
       positionDotFit = dotPositionFive;
@@ -115,21 +115,21 @@ class ReviewInstance extends React.Component {
         <div className="review_instance_left_container">
           <div className="review_instance_stars_user_timestamp_container">
             <span className="review_instance_stars">{stars}</span>
-            <span className="review_instance_user">{eachReview.user}</span>
-            <span className="review_instance_timestamp"> · {eachReview.createdAt} days ago</span>
+            <span className="review_instance_user">{eachReview._user}</span>
+            <span className="review_instance_timestamp"> {eachReview.createdat} days ago</span>
           </div>
           <div className="review_title_container">
             {eachReview.title}
           </div>
           <div className="review_description_container">
-            {eachReview.description}
+            {eachReview._description}
           </div>
           <div className="review_instance_helpfulness_container">
             <span className="review_helpful_text">
               Helpful?
             </span>
-            <button className="review_vote_yes" onClick={this.voteYes}>Yes · {eachReview.yes}</button>
-            <button className="review_vote_no" onClick={this.voteNo}>No · {eachReview.no}</button>
+            <button className="review_vote_yes" onClick={this.voteYes}>Yes · {eachReview._yes}</button>
+            <button className="review_vote_no" onClick={this.voteNo}>No · {eachReview._no}</button>
             <button className="review_vote_report" onClick={this.reportReview}>{eachReview.report}</button>
           </div>
         </div>

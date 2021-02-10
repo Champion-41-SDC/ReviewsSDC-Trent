@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ReviewsPageBar = (props) => {
-  let { reviewsCount, nextPage, previousPage } = props
+  let { reviewsCount, nextPage, previousPage } = props;
   return (
     <div className="reviews-page-bar-container">
       <div className="reviews-current-number-text">

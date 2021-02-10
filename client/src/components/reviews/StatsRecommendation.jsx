@@ -5,7 +5,7 @@ const StatsRecommendation = (props) => {
   let recommendationCount = 0;
   for (var i = 0; i < reviews.length; i++) {
     let eachReview = reviews[i];
-    if (eachReview.recommend === 'Absolutely' || eachReview.recommend === 'Maybe' || eachReview.recommend === 'Likely') {
+    if (eachReview.recommend > 1) {
       recommendationCount += 1;
     }
   }
