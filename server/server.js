@@ -1,4 +1,4 @@
-require('newrelic');
+//require('newrelic');
 const express = require('express');
 const path = require('path');
 // const dbHelpers = require('../database/index.js');
@@ -17,6 +17,10 @@ app.listen(port, () => {
 });
 
 // retrieving all reviews for the specific product (default by most recent)
+app.get('/loaderio-8e608cc6f51f24d5e584c4e0e8f4a872', (req, res) => {
+	res.status(200).send('loaderio-8e608cc6f51f24d5e584c4e0e8f4a872');
+});
+
 app.get('/api/bechampions/products/reviews/', (req, res) => {
   // dbHelpers.Review.find({ productId: req.params.productId }).sort({createdAt: 'asc'})
   //   .then((reviews) => {
@@ -25,9 +29,16 @@ app.get('/api/bechampions/products/reviews/', (req, res) => {
   //   .catch((err) => {
   //     res.status(404).send(err);
   //   });
-  pool.query('select * from reviews order by createdat asc limit 10')
-    .then((results) => { res.status(200).send(results.rows); })
-    .catch((err) => { res.status(400).send(err); })
+
+  try {
+	  var num = Math.floor(Math.random() * 10000000) + 1;
+	  pool.query(`select * from reviews WHERE id > ${num} limit 10`)
+    		.then((results) => { res.status(200).send(results.rows); })
+	  	.catch((err) => { res.status(400).send(err); })
+      } catch(err) {
+		res.status(400).send(err);
+	}
+
 });
 
 // retrieving all reviews for the specific product (highest rating to lowest)
